@@ -18,7 +18,8 @@ class Timesheet extends Model
         'participation_id',
         'working_hours',
         'working_day',
-        'work_desc'
+        'work_desc',
+        'aded_by'
     ];
 
     public function customer(): BelongsTo
@@ -33,5 +34,10 @@ class Timesheet extends Model
     public function employee(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'employee_id', 'id');
     }
 }

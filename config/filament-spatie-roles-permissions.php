@@ -14,8 +14,8 @@ return [
      * Set to false to remove from navigation
      */
     'should_register_on_navigation' => [
-        'permissions' => true,
-        'roles' => true
+        'permissions' => false,
+        'roles' => false
     ],
 
     'guard_names' => [
@@ -96,7 +96,8 @@ return [
         ],
 
         'excluded_policy_models' => [
-            \App\Models\User::class
+            \App\Models\User::class,
+            \App\Models\Timesheet::class
         ],
 
         /*

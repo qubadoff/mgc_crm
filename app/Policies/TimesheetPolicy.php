@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Timesheet;
 use App\Models\User;
 
 class TimesheetPolicy
@@ -17,9 +18,11 @@ class TimesheetPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user): bool
+    public function view(User $user, Timesheet $timesheet): bool
     {
-        return $user->hasRole(['Admin', 'Employee']);
+        //return $user->hasRole(['Admin', 'Employee']);
+
+        return $user->id === $timesheet->employee_id;
     }
 
     /**
