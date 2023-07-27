@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Dayoff;
+use App\Observers\DayoffObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -24,7 +26,9 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        parent::boot();
+
+        Dayoff::observe(DayoffObserver::class);
     }
 
     /**
