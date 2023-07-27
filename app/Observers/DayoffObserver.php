@@ -52,7 +52,7 @@ class DayoffObserver
     {
         $employee = User::where('id', $dayoff->employee_id)->first();
 
-        $admin_mail = 'sgubadov@mgc.az';
+        $admin_mail = 'director@mgc.az';
 
         $data = array(
             'name' => $employee->name,
