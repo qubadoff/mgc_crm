@@ -61,6 +61,7 @@ class DayoffObserver
             'start_date' => $dayoff->start_date,
             'end_date' => $dayoff->end_date,
             'total_of_days' => $dayoff->total_of_days,
+            'status' =>$dayoff->status,
             'created_at' => $dayoff->created_at,
         );
 
