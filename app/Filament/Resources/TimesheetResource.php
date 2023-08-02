@@ -34,6 +34,7 @@ class TimesheetResource extends Resource
                         ->createOptionForm([
                             Forms\Components\TextInput::make('name')
                             ->required()
+                            ->unique()
                         ])
                         ->preload(),
                     Forms\Components\Select::make('participation_id')->label('Participation')->relationship('participation', 'name')->preload()->required(),
@@ -58,6 +59,7 @@ class TimesheetResource extends Resource
                         ->createOptionForm([
                             Forms\Components\TextInput::make('name')
                                 ->required()
+                            ->unique()
                         ])
                         ->required(),
                     Forms\Components\Hidden::make('participation_id')->required()->default('1'),
