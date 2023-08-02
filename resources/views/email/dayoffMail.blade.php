@@ -10,7 +10,7 @@
     <h1>
         Yeni icazə bildirişi !
         <br/>
-        <b> Status : Pending </b>
+        <b> Status : {{ $data['status'] }} </b>
     </h1>
     <br/>
     <h2>Adı və Soyadı : <b> {{ $data['name'] }} </b></h2>
