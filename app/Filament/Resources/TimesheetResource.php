@@ -104,6 +104,7 @@ class TimesheetResource extends Resource
                         })
                 ])
                 ->actions([
+                    Tables\Actions\ViewAction::make(),
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make(),
                 ])
@@ -120,7 +121,7 @@ class TimesheetResource extends Resource
                 Tables\Columns\TextColumn::make('Participation.name')->label('Participation')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('working_hours')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('working_day')->searchable()->sortable()->dateTime(),
-                Tables\Columns\TextColumn::make('work_desc')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('work_desc')->searchable()->sortable()->limit(50),
                 Tables\Columns\TextColumn::make('created_at')->searchable()->sortable()->dateTime(),
             ])
             ->filters([
@@ -142,6 +143,7 @@ class TimesheetResource extends Resource
                     })
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
