@@ -81,9 +81,9 @@ class TimesheetResource extends Resource
                     Tables\Columns\TextColumn::make('Customer.name')->label('Customer')->searchable()->sortable(),
                     Tables\Columns\TextColumn::make('Participation.name')->label('Participation')->searchable()->sortable(),
                     Tables\Columns\TextColumn::make('working_hours')->searchable()->sortable(),
-                    Tables\Columns\TextColumn::make('working_day')->searchable()->sortable(),
-                    Tables\Columns\TextColumn::make('work_desc')->searchable()->sortable(),
-                    Tables\Columns\TextColumn::make('created_at')->searchable()->sortable(),
+                    Tables\Columns\TextColumn::make('working_day')->searchable()->sortable()->dateTime(),
+                    Tables\Columns\TextColumn::make('work_desc')->searchable()->sortable()->limit(50),
+                    Tables\Columns\TextColumn::make('created_at')->searchable()->sortable()->dateTime(),
                 ])
                 ->filters([
                     Filter::make('working_day')
@@ -119,14 +119,27 @@ class TimesheetResource extends Resource
                 Tables\Columns\TextColumn::make('Customer.name')->label('Customer')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('Participation.name')->label('Participation')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('working_hours')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('working_day')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('working_day')->searchable()->sortable()->dateTime(),
                 Tables\Columns\TextColumn::make('work_desc')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('created_at')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('created_at')->searchable()->sortable()->dateTime(),
             ])
             ->filters([
-                Tables\Filters\Filter::make('working_hours')->label('Working Hours')->toggle(),
-                Tables\Filters\Filter::make('working_day')->label('Working Day')->toggle(),
-                Tables\Filters\Filter::make('work_desc')->label('Working Desc')->toggle(),
+                Filter::make('working_day')
+                    ->form([
+                        Forms\Components\DatePicker::make('From'),
+                        Forms\Components\DatePicker::make('Until'),
+                    ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['From'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('working_day', '>=', $date),
+                            )
+                            ->when(
+                                $data['Until'],
+                                fn (Builder $query, $date): Builder => $query->whereDate('working_day', '<=', $date),
+                            );
+                    })
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
