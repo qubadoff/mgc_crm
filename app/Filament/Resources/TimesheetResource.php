@@ -83,7 +83,7 @@ class TimesheetResource extends Resource
                     Tables\Columns\TextColumn::make('working_hours')->searchable()->sortable(),
                     Tables\Columns\TextColumn::make('working_day')->searchable()->sortable()->date('d/m/Y'),
                     Tables\Columns\TextColumn::make('work_desc')->searchable()->sortable(),
-                    Tables\Columns\TextColumn::make('created_at')->searchable()->sortable()->date(),
+                    Tables\Columns\TextColumn::make('created_at')->searchable()->sortable()->date('d/m/Y'),
                 ])
                 ->filters([
                     Filter::make('working_day')
