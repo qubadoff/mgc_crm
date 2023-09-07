@@ -20,6 +20,8 @@
     <h2>Bitiş günü : <b> {{ $data['end_date'] }} </b></h2>
     <h2>Günlərin sayı : <b> {{ $data['total_of_days'] }} </b></h2>
     <h2>Icazənin yaradılma vaxtı : <b> {{ $data['created_at'] }} </b></h2>
+    <br>
+    <h2>Əməliyyat üçün: <b> <a href="https://cloud.mgc.az/admin/dayoffs/{{ $data['id'] }}/edit"> Linkə daxil olun </a></b></h2>
 </center>
 </body>
 </html>

@@ -52,9 +52,13 @@ class DayoffObserver
     {
         $employee = User::where('id', $dayoff->employee_id)->first();
 
-        $admin_mail = 'director@mgc.az';
+        $emails = array(
+            'director@mgc.az',
+            'finance@mgc.az'
+        );
 
         $data = array(
+            'id' => $employee->id,
             'name' => $employee->name,
             'desc' => $dayoff->description,
             'dayoff_type' => $dayoff->dayoff_type,
@@ -65,6 +69,9 @@ class DayoffObserver
             'created_at' => $dayoff->created_at,
         );
 
-        \Mail::to($admin_mail)->send(new DayoffMail($data));
+        foreach ($emails as $key => $email)
+        {
+            \Mail::to($email)->send(new DayoffMail($data));
+        }
     }
 }

@@ -13,7 +13,7 @@
                         <div class="filament-tables-text-column px-4 py-2 flex w-full justify-start text-start">
                             <div class="inline-flex items-center space-x-1 rtl:space-x-reverse">
                                 <span class="font-medium">
-                                    {{ $records->sum($calc_columns[$i]) }}
+                                    W/H - {{ $records->sum($calc_columns[$i]) }}
                                 </span>
                             </div>
                         </div>
