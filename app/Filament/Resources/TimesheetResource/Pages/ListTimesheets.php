@@ -26,6 +26,6 @@ class ListTimesheets extends ListRecords
 
     protected function getTableContentFooter(): View
     {
-        return view('table.footer', $this->data_list, $this->data_list_2);
+        return view('table.footer', $this->data_list);
     }
 }
