@@ -101,7 +101,9 @@ class TimesheetResource extends Resource
                                     $data['Until'],
                                     fn (Builder $query, $date): Builder => $query->whereDate('working_day', '<=', $date),
                                 );
-                        })
+                        }),
+                    Tables\Filters\SelectFilter::make('employee_id')->relationship('employee', 'name')->multiple()->label('Employee'),
+                    Tables\Filters\SelectFilter::make('customer')->relationship('customer', 'name')->multiple(),
                 ])
                 ->actions([
                     Tables\Actions\ViewAction::make(),
