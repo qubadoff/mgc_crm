@@ -84,7 +84,7 @@ class TimesheetResource extends Resource
                     Tables\Columns\TextColumn::make('working_day')->searchable()->sortable()->date('d/m/Y'),
                     Tables\Columns\TextColumn::make('work_desc')->searchable()->sortable(),
                     Tables\Columns\TextColumn::make('created_at')->searchable()->sortable()->date('d/m/Y'),
-                ])
+                ])->defaultSort('created_at', 'DESC')
                 ->filters([
                     Filter::make('working_day')
                         ->form([
@@ -143,7 +143,9 @@ class TimesheetResource extends Resource
                                 $data['Until'],
                                 fn (Builder $query, $date): Builder => $query->whereDate('working_day', '<=', $date),
                             );
-                    })
+                    }),
+                Tables\Filters\SelectFilter::make('customer')->relationship('customer', 'name')->multiple()->label("Customer"),
+                Tables\Filters\SelectFilter::make('participation_id')->relationship('participation', 'name')->multiple()->label("Participation"),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
