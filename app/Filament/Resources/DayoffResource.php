@@ -84,7 +84,7 @@ class DayoffResource extends Resource
                     Tables\Columns\TextColumn::make('start_date')->label('Start Date')->searchable()->sortable(),
                     Tables\Columns\TextColumn::make('end_date')->label('End Date')->searchable()->sortable(),
                     Tables\Columns\TextColumn::make('created_at')->label('Created at')->searchable()->sortable(),
-                    Tables\Columns\TextColumn::make('status')->label('Status')->searchable()->sortable(),
+                    Tables\Columns\TextColumn::make('status')->label('Status')->sortable(),
                     Tables\Columns\TextColumn::make('dayoff_type')->label('Dayoff type')->searchable()->sortable(),
                     Tables\Columns\TextColumn::make('total_of_days')->label('Total Days')->searchable()->sortable(),
                 ])

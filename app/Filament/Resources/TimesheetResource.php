@@ -103,7 +103,8 @@ class TimesheetResource extends Resource
                                 );
                         }),
                     Tables\Filters\SelectFilter::make('employee_id')->relationship('employee', 'name')->multiple()->label('Employee'),
-                    Tables\Filters\SelectFilter::make('customer')->relationship('customer', 'name')->multiple(),
+                    Tables\Filters\SelectFilter::make('customer')->relationship('customer', 'name')->multiple()->label("Customer"),
+                    Tables\Filters\SelectFilter::make('participation_id')->relationship('participation', 'name')->multiple()->label("Participation"),
                 ])
                 ->actions([
                     Tables\Actions\ViewAction::make(),
@@ -122,9 +123,9 @@ class TimesheetResource extends Resource
                 Tables\Columns\TextColumn::make('Customer.name')->label('Customer')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('Participation.name')->label('Participation')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('working_hours')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('working_day')->searchable()->sortable()->date(),
+                Tables\Columns\TextColumn::make('working_day')->searchable()->sortable()->date('d-m-Y'),
                 Tables\Columns\TextColumn::make('work_desc')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('created_at')->searchable()->sortable()->date(),
+                Tables\Columns\TextColumn::make('created_at')->searchable()->sortable()->date('d-m-Y'),
             ])
             ->filters([
                 Filter::make('working_day')
