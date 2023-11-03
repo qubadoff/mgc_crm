@@ -2,9 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Document;
+use App\Models\Timesheet;
 use App\Models\User;
+use App\Policies\DocumentPolicy;
 use App\Policies\PermissionPolicy;
 use App\Policies\RolePolicy;
+use App\Policies\TimesheetPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Spatie\Permission\Models\Permission;
@@ -20,7 +24,9 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         User::class => UserPolicy::class,
         Role::class => RolePolicy::class,
-        Permission::class => PermissionPolicy::class
+        Permission::class => PermissionPolicy::class,
+        Timesheet::class => TimesheetPolicy::class,
+        Document::class => DocumentPolicy::class
     ];
 
     /**
