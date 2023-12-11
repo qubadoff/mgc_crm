@@ -126,7 +126,7 @@ class TimesheetResource extends Resource
                 Tables\Columns\TextColumn::make('working_day')->searchable()->sortable()->date('d/m/Y'),
                 Tables\Columns\TextColumn::make('work_desc')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('created_at')->searchable()->sortable()->date('d/m/Y'),
-            ])
+            ])->defaultSort('created_at', 'DESC')
             ->filters([
                 Filter::make('working_day')
                     ->form([
